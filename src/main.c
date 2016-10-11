@@ -97,6 +97,22 @@ void initLED(){
 }
 
 
+void blinkingLED(int period){
+	if (period == 0){
+     	GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+     	return;
+	}
+	if  (period < 0){
+     	GPIO_SetBits(GPIOA, GPIO_Pin_5);
+     	return;
+	}
+
+	  GPIO_SetBits(GPIOA, GPIO_Pin_5);
+for (int i = 0; i < period; i++);
+	GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+	for (int i = 0; i < period; i++);
+}
+
 /**
 **===========================================================================
 **
