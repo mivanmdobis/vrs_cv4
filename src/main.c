@@ -152,7 +152,26 @@ int main(void)
   uint16_t AD_value;
    while (1)
   {
+	   /* Start ADC Software Conversion */
+	 	      ADC_SoftwareStartConv(ADC1);
+	 	      while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC)){}
+	 	      AD_value = ADC_GetConversionValue(ADC1);
 
+	 	      if (AD_value > B_VYP){
+	 	         blinkingLED(0);
+	 	      }
+	 	      if (AD_value > B4 - 100 && AD_value < B4 + 100){
+	 	    	blinkingLED(500000);
+	 	      }
+	 	      if (AD_value > B3 - 100 && AD_value < B3 + 100){
+	 	    	  blinkingLED(50000);
+	 	   	      }
+	 	      if (AD_value > B2 - 100 && AD_value < B2 + 100){
+	 	    	  blinkingLED(100000);
+	 	   	      }
+	 	      if (AD_value > B1 - 100 && AD_value < B1 + 100){
+	 	   	    	 blinkingLED(-1);
+	 	   	      }
 	    }
   return 0;
 }
